@@ -1,0 +1,51 @@
+[
+  {
+    "ari": 0.5092715757547741,
+    "n_labels": 20,
+    "n_predictions": 20,
+    "n_rows": 3798,
+    "prediction_file": "predictions/kmeans_seed_0.csv"
+  },
+  {
+    "ari": 0.5222170004322474,
+    "n_labels": 20,
+    "n_predictions": 20,
+    "n_rows": 3798,
+    "prediction_file": "predictions/kmeans_seed_1.csv"
+  },
+  {
+    "ari": 0.500897837545665,
+    "n_labels": 20,
+    "n_predictions": 20,
+    "n_rows": 3798,
+    "prediction_file": "predictions/kmeans_seed_2.csv"
+  },
+  {
+    "ari": 0.43375361409563973,
+    "n_labels": 20,
+    "n_predictions": 17,
+    "n_rows": 3798,
+    "prediction_file": "predictions/louvain_seed_0.csv"
+  },
+  {
+    "ari": 0.3708114787808151,
+    "n_labels": 20,
+    "n_predictions": 20,
+    "n_rows": 3798,
+    "prediction_file": "predictions/mcfst_seed_0.csv"
+  },
+  {
+    "ari": 0.3147132929989598,
+    "n_labels": 20,
+    "n_predictions": 20,
+    "n_rows": 3798,
+    "prediction_file": "predictions/mcfst_seed_1.csv"
+  },
+  {
+    "ari": 0.38695552203483247,
+    "n_labels": 20,
+    "n_predictions": 20,
+    "n_rows": 3798,
+    "prediction_file": "predictions/mcfst_seed_2.csv"
+  }
+]
