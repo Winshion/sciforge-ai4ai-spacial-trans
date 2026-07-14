@@ -2,3 +2,7 @@ __pycache__/
 *.pyc
 .DS_Store
 provenance/official_MCFST_remote/.git/
+.git_repro/
+.sciforge/
+provenance/mplconfig/
+reprod.pdf
