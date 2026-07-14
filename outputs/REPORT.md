@@ -114,7 +114,7 @@ The verification script (`outputs/verify.py`) confirmed all 10 prediction files 
 ---
 
 *Report generated: 2026-07-14*
-*Python environment: /Users/winshion/wssenv (torch 2.1.0, dgl 2.2.0, scanpy 1.11.5)*
+*Python environment: ~/wssenv (torch 2.1.0, dgl 2.2.0, scanpy 1.11.5)*
 
 ---
 
@@ -140,4 +140,4 @@ All checks pass. The reproduction is internally consistent: 10 prediction files 
 ---
 
 *Latest consistency commit: see `.git_repro` HEAD*
-*Workspace: /Users/winshion/.sciforge/default_workspace*
+*Workspace: ~/.sciforge/default_workspace*

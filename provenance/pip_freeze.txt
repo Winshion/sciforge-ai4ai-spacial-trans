@@ -177,12 +177,12 @@ reportlab==4.4.9
 requests==2.32.5
 requests-toolbelt==1.0.0
 # Editable install with no version control (researchfactory==0.1.0)
--e /Users/winshion/Downloads/ResearchFactory-main
+-e ~/Downloads/ResearchFactory-main
 rich==15.0.0
 rlPyCairo==0.4.0
 rpds-py==0.30.0
 rubicon-objc==0.5.6
-satis-gopy @ file:///Users/winshion/Documents/Winshion%E6%96%87%E6%A1%A3/satis/clients/python
+satis-gopy @ file://~/Documents/Winshion%E6%96%87%E6%A1%A3/satis/clients/python
 scanpy==1.11.5
 -e git+https://github.com/AGI4Sci/SciForge.git@02255af793fe613da67c51f82fd6795e22e5d94f#egg=sciforge_evidence_dag&subdirectory=packages/workers/evidence-dag
 -e git+https://github.com/AGI4Sci/SciForge.git@02255af793fe613da67c51f82fd6795e22e5d94f#egg=sciforge_project_dag&subdirectory=packages/workers/project-dag

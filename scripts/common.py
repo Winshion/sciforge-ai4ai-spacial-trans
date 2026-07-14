@@ -6,9 +6,9 @@ from scipy import sparse
 from sklearn.decomposition import PCA
 from sklearn.neighbors import kneighbors_graph
 
-ROOT=Path('/Users/winshion/.sciforge/default_workspace')
+ROOT=Path.home()/'.sciforge/default_workspace'
 OFFICIAL=ROOT/'provenance/official_MCFST_remote'
-WSSENV=Path('/Users/winshion/wssenv')
+WSSENV=Path.home()/'wssenv'
 N_CLUSTERS=20
 PAPER_ARI=0.693
 

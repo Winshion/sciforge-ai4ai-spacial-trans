@@ -1,41 +1,41 @@
 Traceback (most recent call last):
-  File "/Users/winshion/.sciforge/default_workspace/dataProcess.py", line 3, in <module>
+  File "~/.sciforge/default_workspace/dataProcess.py", line 3, in <module>
     import scanpy as sc
-  File "/Users/winshion/wssenv/lib/python3.11/site-packages/scanpy/__init__.py", line 38, in <module>
+  File "~/wssenv/lib/python3.11/site-packages/scanpy/__init__.py", line 38, in <module>
     from . import datasets, experimental, external, get, logging, metrics, queries
-  File "/Users/winshion/wssenv/lib/python3.11/site-packages/scanpy/datasets/__init__.py", line 5, in <module>
+  File "~/wssenv/lib/python3.11/site-packages/scanpy/datasets/__init__.py", line 5, in <module>
     from ._datasets import (
-  File "/Users/winshion/wssenv/lib/python3.11/site-packages/scanpy/datasets/_datasets.py", line 11, in <module>
+  File "~/wssenv/lib/python3.11/site-packages/scanpy/datasets/_datasets.py", line 11, in <module>
     from .. import _utils
-  File "/Users/winshion/wssenv/lib/python3.11/site-packages/scanpy/_utils/__init__.py", line 39, in <module>
+  File "~/wssenv/lib/python3.11/site-packages/scanpy/_utils/__init__.py", line 39, in <module>
     from .compute.is_constant import is_constant  # noqa: F401
     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-  File "/Users/winshion/wssenv/lib/python3.11/site-packages/scanpy/_utils/compute/is_constant.py", line 112, in <module>
+  File "~/wssenv/lib/python3.11/site-packages/scanpy/_utils/compute/is_constant.py", line 112, in <module>
     @njit
      ^^^^
-  File "/Users/winshion/wssenv/lib/python3.11/site-packages/scanpy/_compat.py", line 175, in njit
+  File "~/wssenv/lib/python3.11/site-packages/scanpy/_compat.py", line 175, in njit
     return decorator if fn is None else decorator(fn)
                                         ^^^^^^^^^^^^^
-  File "/Users/winshion/wssenv/lib/python3.11/site-packages/scanpy/_compat.py", line 156, in decorator
+  File "~/wssenv/lib/python3.11/site-packages/scanpy/_compat.py", line 156, in decorator
     fns: dict[bool, Callable[P, R]] = {
                                       ^
-  File "/Users/winshion/wssenv/lib/python3.11/site-packages/scanpy/_compat.py", line 157, in <dictcomp>
+  File "~/wssenv/lib/python3.11/site-packages/scanpy/_compat.py", line 157, in <dictcomp>
     parallel: numba.njit(f, cache=True, parallel=parallel)  # noqa: TID251
               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-  File "/Users/winshion/wssenv/lib/python3.11/site-packages/numba/core/decorators.py", line 253, in njit
+  File "~/wssenv/lib/python3.11/site-packages/numba/core/decorators.py", line 253, in njit
     return jit(*args, **kws)
            ^^^^^^^^^^^^^^^^^
-  File "/Users/winshion/wssenv/lib/python3.11/site-packages/numba/core/decorators.py", line 194, in jit
+  File "~/wssenv/lib/python3.11/site-packages/numba/core/decorators.py", line 194, in jit
     return wrapper(pyfunc)
            ^^^^^^^^^^^^^^^
-  File "/Users/winshion/wssenv/lib/python3.11/site-packages/numba/core/decorators.py", line 227, in wrapper
+  File "~/wssenv/lib/python3.11/site-packages/numba/core/decorators.py", line 227, in wrapper
     disp.enable_caching()
-  File "/Users/winshion/wssenv/lib/python3.11/site-packages/numba/core/dispatcher.py", line 809, in enable_caching
+  File "~/wssenv/lib/python3.11/site-packages/numba/core/dispatcher.py", line 809, in enable_caching
     self._cache = FunctionCache(self.py_func)
                   ^^^^^^^^^^^^^^^^^^^^^^^^^^^
-  File "/Users/winshion/wssenv/lib/python3.11/site-packages/numba/core/caching.py", line 687, in __init__
+  File "~/wssenv/lib/python3.11/site-packages/numba/core/caching.py", line 687, in __init__
     self._impl = self._impl_class(py_func)
                  ^^^^^^^^^^^^^^^^^^^^^^^^^
-  File "/Users/winshion/wssenv/lib/python3.11/site-packages/numba/core/caching.py", line 423, in __init__
+  File "~/wssenv/lib/python3.11/site-packages/numba/core/caching.py", line 423, in __init__
     raise RuntimeError("cannot cache function %r: no locator available "
-RuntimeError: cannot cache function '_is_constant_csr_rows': no locator available for file '/Users/winshion/wssenv/lib/python3.11/site-packages/scanpy/_utils/compute/is_constant.py'
+RuntimeError: cannot cache function '_is_constant_csr_rows': no locator available for file '~/wssenv/lib/python3.11/site-packages/scanpy/_utils/compute/is_constant.py'

@@ -2,7 +2,7 @@ import argparse,json
 from pathlib import Path
 import pandas as pd
 from sklearn.metrics import adjusted_rand_score
-ROOT=Path('/Users/winshion/.sciforge/default_workspace')
+ROOT=Path.home()/'.sciforge/default_workspace'
 p=argparse.ArgumentParser(); p.add_argument('files',nargs='*'); a=p.parse_args(); paths=[Path(x) for x in a.files] if a.files else sorted((ROOT/'predictions').glob('*.csv'))
 res=[]
 for path in paths:

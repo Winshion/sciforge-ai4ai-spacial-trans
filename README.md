@@ -11,7 +11,7 @@ The paper PDF is intentionally not included in this repository.
 - Method: MCFST, a multi-view graph convolutional and graph fusion approach for spatial domain identification.
 - Experiment: Human breast cancer spatial domain identification, Section 2.3 / Fig. 3A.
 - Paper-reported metric: ARI = 0.693 on 3,798 spots with 20 annotated fine-grained subregions.
-- Runtime environment used locally: `/Users/winshion/wssenv`.
+- Runtime environment used locally: `~/wssenv`.
 
 ## Current Result
 
@@ -55,7 +55,7 @@ Verdict: partially reproduced. The best reproduced run matches the paper-reporte
 Run from the repository root:
 
 ```bash
-/Users/winshion/wssenv/bin/python outputs/verify.py
+~/wssenv/bin/python outputs/verify.py
 ```
 
 Expected summary:

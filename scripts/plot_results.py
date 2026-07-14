@@ -1,5 +1,6 @@
 import json, os
-os.environ['MPLCONFIGDIR']='/Users/winshion/.sciforge/default_workspace/provenance/mplconfig'
+from pathlib import Path
+os.environ['MPLCONFIGDIR']=str(Path.home()/'.sciforge/default_workspace/provenance/mplconfig')
 import matplotlib.pyplot as plt, pandas as pd
 from common import ROOT,PAPER_ARI,build_or_load_processed,ensure_dirs
 ensure_dirs(); rows=[]
