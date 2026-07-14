@@ -1,6 +1,6 @@
-![SciForge reproduction demo](demo.gif)
-
 # MCFST Reproduction: AI4AI Spatial Transcriptomics
+
+![SciForge reproduction demo](demo.gif)
 
 This repository contains a SciForge/Codex-assisted reproduction of one central experiment from the MCFST paper: spatial domain identification on the human breast cancer 10x Visium dataset.
 
