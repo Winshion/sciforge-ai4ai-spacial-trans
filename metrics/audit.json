@@ -1,0 +1,27 @@
+{
+  "baseline_methods": [
+    "KMeans",
+    "Louvain"
+  ],
+  "failures": [],
+  "max": 0.38695552203483247,
+  "mcfst_aris": [
+    0.3708114787808151,
+    0.3147132929989598,
+    0.38695552203483247
+  ],
+  "mean": 0.3574934312715358,
+  "median": 0.3708114787808151,
+  "min": 0.3147132929989598,
+  "n_plots": 8,
+  "n_predictions": 7,
+  "n_runs": 3,
+  "official_retrieval": "see provenance/provenance.json",
+  "pass": true,
+  "seeds": [
+    0,
+    1,
+    2
+  ],
+  "std": 0.0379178415276033
+}
