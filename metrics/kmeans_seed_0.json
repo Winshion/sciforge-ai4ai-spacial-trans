@@ -1,0 +1,8 @@
+{
+  "ari": 0.5092715757547741,
+  "features": "rebuilt PCA",
+  "method": "KMeans",
+  "n_clusters_predicted": 20,
+  "prediction_file": "predictions/kmeans_seed_0.csv",
+  "seed": 0
+}
