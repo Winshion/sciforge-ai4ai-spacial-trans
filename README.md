@@ -33,7 +33,6 @@ Baselines:
 | Method | Mean ARI | Best ARI |
 | --- | ---: | ---: |
 | K-Means, 10 seeds | 0.3122 | 0.3436 |
-| Agglomerative clustering, 10 seeds | 0.3109 | 0.3109 |
 
 Verdict: partially reproduced. The best reproduced run matches the paper-reported ARI closely, while the full-run mean is lower and indicates seed sensitivity.
 
@@ -76,5 +75,5 @@ All predictions match expected ARI: True
 ## Caveats
 
 - The paper does not report full seed distributions, so the reproduced best run and reproduced mean should be interpreted separately.
-- Louvain with `python-igraph` was blocked by local dependency/sandbox constraints; a NetworkX spatial-only Louvain attempt was near zero ARI and is documented in `outputs/REPORT.md`.
+- Louvain with `python-igraph` was blocked by local dependency/sandbox constraints; it is documented as a blocker, not reported as a completed baseline.
 - The reproduction used local compatibility patches for CPU execution where the official implementation assumed CUDA.

@@ -9,3 +9,9 @@ reprod.pdf
 MCFST_repo/
 data/data
 data/v1/
+metrics/
+predictions/
+plots/
+runs/
+reports/
+provenance/official_MCFST_remote/

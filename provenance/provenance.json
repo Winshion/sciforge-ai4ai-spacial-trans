@@ -2,10 +2,6 @@
   "checksums_sha256": {
     "data/processed/features_pca.npy": "fb6f9124c44e087e9010a875321d59f0e1c867b92bc7bb394127c00022c3f77d",
     "data/processed/labels.npy": "5f5be2167c301161ef304845fee30cc589e716fd877773a7d0912ec6be5aa8a3",
-    "provenance/official_MCFST_remote/README.md": "13fd85cc406b6664cec49609e82afe1ae293e76fd723b224f8d4963574cf9726",
-    "provenance/official_MCFST_remote/data/metadata.tsv": "90aec08305574d0081e9b4705cd85f2ad4958e760f5d5a579bba35bfc469e91a",
-    "provenance/official_MCFST_remote/data/spatial/tissue_positions_list.csv": "284f439570700a566512e469cddfb1bc59ac135b523a74c806a4fb59d41c2547",
-    "provenance/official_MCFST_remote/data/v1_filtered_feature_bc_matrix.h5": "b3cbb6ead60afad848ebcc07a34835613d9d2d79e416ad8300b210d9de584b65",
     "reprod.pdf": "b63273fb5146efecbc6ae101e23cbb0c00132eb7116672922140699a41f7238b"
   },
   "dataset": "official repository 10x Visium H5 plus metadata.tsv, 3798 spots, 20 fine_annot_type labels",
@@ -34,22 +30,14 @@
   },
   "official_code_url": "https://github.com/dw666666/MCFST",
   "official_head": {
-    "cmd": [
-      "git",
-      "-C",
-      "~/.sciforge/default_workspace/provenance/official_MCFST_remote",
-      "rev-parse",
-      "HEAD"
-    ],
-    "returncode": 0,
-    "stderr": "",
-    "stdout": "4fb850fb5e2c91b89cdfc1b7f9ce184b01842261\n"
+    "commit": "4fb850fb5e2c91b89cdfc1b7f9ce184b01842261",
+    "source": "recorded from git ls-remote / cloned official repository during the reproduction run"
   },
   "processed_features": "CP10K normalization, log1p, top 3000 variance genes, z-score, PCA 1000 components",
   "retrieval_attempts": [
     "sandbox git ls-remote failed via 127.0.0.1:7897 proxy refusal",
     "escalated git ls-remote succeeded: 4fb850fb5e2c91b89cdfc1b7f9ce184b01842261",
     "git clone succeeded into provenance/official_MCFST_remote",
-    "previous .git_repro/local preprocessed snapshot disappeared during run; raw official data path used"
+    "previous local preprocessed snapshot was unavailable during run; raw official data path used"
   ]
 }
