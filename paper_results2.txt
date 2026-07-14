@@ -1,0 +1,255 @@
+tion to removing individual views, we further performed 
+module-level ablation experiments to assess the contributions of the 
+mutual information maximization module and the graph fusion network. 
+Specifically, we designed three additional variants: MCFST w/o MI, in 
+which the mutual information maximization module was removed; 
+MCFST w/o GFN, in which the graph fusion network was removed; and 
+MCFST w/o MI+GFN, in which both modules were removed 
+simultaneously. As shown in Table 1, the complete MCFST model 
+achieved the highest ARI values across all six datasets. Removing the 
+mutual information maximization module led to a decrease in 
+performance, suggesting that this module contributes to cross-view 
+representation consistency and helps alleviate view divergence. The 
+removal of the graph fusion network resulted in a more pronounced 
+decline, indicating that the learned consistency graph plays an important 
+role in integrating complementary graph structures from different views. 
+Furthermore, the simultaneous removal of both modules caused the largest 
+performance degradation, further confirming their joint contribution to 
+robust spatial domain recognition. Overall, these ablation results 
+demonstrate that both the multi-view design and the proposed key 
+modules are essential for the effectiveness of MCFST.
+Table 1 Module-level ablation results of MCFST on six spatial 
+transcriptomics datasets.
+Dataset
+MCFST
+MCFST w/o 
+MI
+MCFST w/o 
+GFN
+MCFST w/o 
+MI+GFN
+Human breast 
+cancer
+0.691
+0.656
+0.623
+0.597
+DLPFC151509
+0.618
+0.586
+0.554
+0.533
+DLPFC151510
+0.620
+0.583
+0.551
+0.518
+DLPFC151671
+0.674
+0.636
+0.602
+0.561
+DLPFC151672
+0.642
+0.604
+0.572
+0.546
+Mouse anterior 
+cerebral
+0.457
+0.421
+0.389
+0.356
+3
+Discussion
+By integrating spatial information with traditional transcriptomics, spatial 
+transcriptomics enables the localization of gene expression, generating 
+detailed maps across tissue regions and structures. This supports key tasks 
+such as spatial domain recognition and identification of spatially variable 
+genes (SVGs). Accurate delineation of spatial domains, together with 
+reliable detection of spatially expressed genes, is essential for 
+understanding tissue organization and biological function.
+We introduce MCFST, a spatial domain identification framework that 
+extends multi-view graph convolutional networks with a graph fusion 
+module and a mutual information maximization strategy. MCFST 
+constructs multiple views (e.g., spatial location, gene expression), learns 
+potential representations from each view, and integrates them consistently, 
+enabling both spatial domain recognition and SVG detection.
+To evaluate its effectiveness, we tested MCFST on two simulated and 
+three real datasets. On simulated data, MCFST showed superior 
+robustness in domain recognition, outperforming advanced baselines. On 
+real datasets, including human breast cancer tissue, it achieved higher 
+clustering accuracy and more precise tissue delineation, while also 
+identifying more SVGs with stronger spatial patterns than SpaGCN.
+Compared with other multi-view methods such as SpaNCMG, which 
+may suffer from view divergence due to large discrepancies across views, 
+MCFST mitigates this problem through mutual information maximization 
+and graph fusion, ensuring cross-view consistency and maintaining 
+performance. Comprehensive tests confirmed that MCFST outperforms 
+Page 6 of 17
+Bioinformatics
+1
+2
+3
+4
+5
+6
+7
+8
+9
+10
+11
+12
+13
+14
+15
+16
+17
+18
+19
+20
+21
+22
+23
+24
+25
+26
+27
+28
+29
+30
+31
+32
+33
+34
+35
+36
+37
+38
+39
+40
+41
+42
+43
+44
+45
+46
+47
+48
+49
+50
+51
+52
+53
+54
+55
+56
+57
+58
+59
+60
+Downloaded from https://academic.oup.com/bioinformatics/advance-article/doi/10.1093/bioinformatics/btag469/8724127 by guest on 08 July 2026
+
+=== PAGE 7 ===
+Article short title
+SpaNCMG in spatial domain recognition across both simulated and real 
+datasets.
+Although MCFST demonstrates strong performance in spatial domain 
+identification and SVG detection, several limitations remain. First, the 
+construction of multiple views in MCFST depends on predefined graph-
+building strategies, such as KNN-based spatial adjacency and expression-
+similarity graphs. Although these views provide complementary 
+information, the optimal selection and weighting of views may vary across 
+tissues, platforms, and data resolutions. Future work will explore more 
+adaptive view construction strategies to automatically identify informative 
+graph structures from spatial transcriptomics data. Second, the current 
+framework mainly focuses on gene expression and spatial coordinate 
+information, while histological images and other multimodal information 
+are not fully incorporated. Integrating image-derived morphological 
+features may further improve the ability of MCFST to characterize 
+complex tissue architectures. Third, although MCFST performs well on 
+the evaluated datasets, its computational efficiency and scalability should 
+be 
+further 
+improved 
+for 
+larger 
+and 
+higher-resolution 
+spatial 
+transcriptomics datasets. Future studies will optimize the graph 
+construction and model training process to reduce computational costs. In 
+addition, further validation across more tissue types, disease contexts, and 
+spatial transcriptomics platforms will be important to assess the 
+generalizability of MCFST. These directions may further enhance the 
+robustness, interpretability, and applicability of MCFST in spatial 
+transcriptomics analysis.
+4
+Materials and methods
+4.1 Ablation study
+We used spatial transcriptomics datasets from the 10X Visium platform as 
+baselines, including human brain, human breast cancer, and mouse brain 
+tissues, and further tested on simulated datasets derived from the human 
+breast cancer data. The human dorsolateral prefrontal cortex (DLPFC) 
+dataset contains 12 slices, each with 5–7 cortical layers (Maynard, et al., 
+2021); four slices (151509, 151510, 151671, 151672) were selected for 
+experiments. The human breast cancer dataset includes four tissue 
+categories (e.g., DCIS/LCIS and healthy tissue) manually annotated into 
+20 regions. The mouse anterior brain dataset was annotated into 52 regions 
+across sections. Two types of simulated datasets were constructed from 
+the breast cancer data: (1) Sparsity simulation: randomly masking 
+elements in the expression matrix at ratios 0–0.8 (e.g., 0.8 means 80% 
+entries set to zero). (2) Noise simulation: introducing Poisson-distributed 
+noise at levels of 10%, 30%, 50%, 70%, and 90%.
+4.2 Data preprocessing
+We mainly used the tool Scanpy (Wolf, et al., 2018) for data preprocessing 
+of the dataset used. First, genes expressed in fewer than five cells were 
+filtered out, after which the expression matrix was subjected to 
+normalization and log transformation. In the second step, we selected the 
+top 2000 and 3000 highly variable genes and rescaled the dataset 
+accordingly. As the final step of PCA was performed on the expression 
+profiles of the 3000 most variable genes, compressing them into 1000 
+dimensions. The resulting low-dimensional representations were 
+subsequently adopted as feature vectors to characterize each individual 
+spot.
+4.3 Construction of multiple views
+MCFST constructs four graph branches from three types of 
+complementary information, including spatial adjacency, gene expression 
+similarity, and spatially enhanced gene expression similarity. Specifically, 
+two branches are constructed based on the same spatial adjacency matrix 
+derived from spot coordinates, while the other two branches are 
+constructed from gene expression similarity and spatially enhanced gene 
+expression similarity, respectively. Although the two spatial adjacency 
+branches share the same graph topology, they serve different functions 
+during training. The first spatial branch is used as a basic spatial structural 
+view for multi-view graph convolution, enabling local information 
+propagation among spatially neighboring spots. The second spatial branch 
+is introduced as an additional spatial-prior branch in the multi-view fusion 
+framework, which reinforces the spatial consistency constraint during 
+representation learning and graph fusion. In this way, the duplicated 
+spatial adjacency is not intended to provide a new topology, but to 
+strengthen the influence of spatial neighborhood information when 
+integrating heterogeneous views.
+For the construction of the spatial adjacency matrix, the KNN algorithm 
+is applied to identify the 10 closest neighbors of each spot based on spatial 
+location coordinates, which are then utilized to build the corresponding 
+two adjacency matrices A(1) and A(2), and the two identical spatial 
+adjacency maps G(1)and G(2) are constructed using these two adjacency 
+matrices. Taking A(1) as an example, A(1)ij= A(1)ji =1 is set if spot i and spot 
+j are the nearest neighbors, otherwise it is set to 0. And, using the KNN 
+algorithm to select the first 3 and the first 8 nearest neighbors of the spots 
+using the spatial location coordinates as inputs to the mutual information 
+maximization module, respectively. These two neighborhood sizes were 
+used to capture spatial consistency at different local scales: the top 3 
+nearest neighbors provide highly local and reliable spatial constraints, 
+while the top 8 nearest neighbors introduce a broader local context and 
+increase the diversity of positive pairs. This setting helps balance local 
+spatial smoothness and neighborhood diversity in the mutual information 
+maximization process.
+In the construction of spatially enhanced gene expression similarity 
+map, follow the MNMST algorithm to construct cell expression network, 
+use the spatial location information of spot to enhance the gene expression 
+data of spot, use self-representation learning (SRL) to construct the 
+adjacency matrix A(3) and use this adjacency matrix to construct the 
+spatially enhanced gene expression similarity map G(3). If spot i and spot 
+j are identified as nearest neighbors, then set A(3)ij= A(3)ji=1, other

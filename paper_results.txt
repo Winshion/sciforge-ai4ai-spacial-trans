@@ -1,0 +1,290 @@
+Rand 
+Index (ARI). MCFST achieved the best performance (ARI = 0.693), 
+surpassing MNMST (0.58) and all other methods (<0.55) (Fig. 3A). 
+Visualization further shows that MCFST delineates regions more 
+precisely, e.g., IDC_4 (lower-left) and IDC_2 (lower-right), underscoring 
+its advantage in fine-grained profiling.
+We next assessed spatially variable genes (SVGs) based on MCFST and 
+SpaGCN results. MCFST identified 229 SVGs, more than SpaGCN’s 180, 
+with higher spatial autocorrelation: median Moran’s I (0.666 vs. 0.642) 
+and median 1−Geary’s C (0.667 vs. 0.645) (Fig. 3B). Representative 
+SVGs such as CRISP3 and SLITRK6 detected by MCFST displayed more 
+pronounced spatial expression patterns, aligning with structural regions 
+like IDC_2 and IDC_4 (Fig. 3C). These findings highlight MCFST’s 
+superior performance in both spatial domain recognition and SVG 
+detection.
+Fig. 3 Spatial domain and SVG identification results on human breast 
+cancer tissue. (A) Manual annotation and domain delineation by SEDR, 
+BayesSpace, SpaGCN, SpaNCMG, GraphST, MNMST, and MCFST. (B) 
+Boxplots of Moran’s I and 1−Geary’s C statistics for SVGs identified by 
+MCFST and SpaGCN; boxes indicate interquartile ranges with medians, 
+whiskers extend to 1.5× IQR, and outliers are shown as points. (C) Spatial 
+expression patterns of representative SVGs (CRISP3, SLITRK6, TTLL12, 
+LINC00645) identified by MCFST.
+2.4 MCFST provides precise identification of hierarchical 
+structures in the human dorsolateral prefrontal cortex
+In addition to profiling breast cancer tissues, we validated MCFST on 
+normal human tissues using the human dorsolateral prefrontal cortex 
+(DLPFC) dataset, a widely used benchmark on the 10X Visium platform. 
+The dataset comprises 12 brain slices, each containing four to six cortical 
+layers plus white matter, with expert annotations based on morphology 
+and auxiliary criteria providing reliable ground truth.
+We compared MCFST with SEDR, BayesSpace, SpaGCN, SpaNCMG, 
+GraphST, and MNMST on four slices (DLPFC151509, DLPFC151510, 
+DLPFC151671, DLPFC151672). MCFST achieved the best accuracy, 
+with ARI scores of 0.620, 0.622, 0.676, and 0.645, significantly 
+outperforming all baselines (Figs. 4A, B). The spatial partitions produced 
+by MCFST closely matched the hierarchical cortical organization, with 
+only minor misclassified points. MNMST and GraphST ranked next, 
+typically scoring above 0.5 ARI, while other methods performed poorly 
+and often misclassified spots, leading to confused domain boundaries. 
+These results confirm that MCFST offers clear advantages in mapping the 
+spatial organization of normal tissues.
+We further applied MCFST to detect spatially variable genes (SVGs) 
+across the same four slices, identifying 13, 13, 8, and 11 SVGs, 
+respectively—considerably more than SpaGCN, which detected only 13, 
+3, 3, and 2. In addition, MCFST achieved comparable Moran’s I and 
+1−Geary’s C values to SpaGCN on DLPFC151509, and significantly 
+higher values on the other three slices, e.g., DLPFC151510 (Fig. 4C). 
+These findings demonstrate MCFST’s superior accuracy and robustness 
+Page 4 of 17
+Bioinformatics
+1
+2
+3
+4
+5
+6
+7
+8
+9
+10
+11
+12
+13
+14
+15
+16
+17
+18
+19
+20
+21
+22
+23
+24
+25
+26
+27
+28
+29
+30
+31
+32
+33
+34
+35
+36
+37
+38
+39
+40
+41
+42
+43
+44
+45
+46
+47
+48
+49
+50
+51
+52
+53
+54
+55
+56
+57
+58
+59
+60
+Downloaded from https://academic.oup.com/bioinformatics/advance-article/doi/10.1093/bioinformatics/btag469/8724127 by guest on 08 July 2026
+
+=== PAGE 5 ===
+Article short title
+in both spatial domain recognition and SVG detection on normal human 
+tissues.
+What's more, considering the precision of the spatial domain recognition 
+outcomes, spatially variable genes such as MBP identified by MCFST in 
+section 
+DLPFC151509 
+and 
+MTRNR2L8 
+identified 
+in 
+section 
+DLPFC151672 are in good agreement with the structure of the tissue 
+stratification (Fig. 4D). Thus, MCFST can also better identify spatially 
+variable genes in human dorsolateral prefrontal cortex tissue.
+Fig. 4 Results of spatial domain recognition and detection of spatially 
+variable genes obtained by MCFST and other state-of-the-art comparison 
+methods on the human dorsolateral prefrontal cortex (DLPFC) tissue 
+dataset. (A) Spatial domains in DLPFC slice 151509, manually annotated 
+and detected by SEDR, BayesSpace, SpaGCN, SpaNCMG, GraphST, 
+MNMST, and MCFST. (B) Performance comparison of these methods on 
+DLPFC slices 151510, 151671, and 151672, with the x-axis indicating 
+slice IDs and the y-axis showing ARI scores for spatial domain accuracy. 
+(C) Box plots of Moran’s I and 1-Geary’s C values for SVGs detected by 
+MCFST and SpaGCN across four DLPFC slices (151509, 151510, 151671, 
+151672). In the boxplot, the hinges represent the first and third quartiles, 
+while the line in the middle marks the median value. The whiskers extend 
+to the most extreme observations that lie within 1.5 times the interquartile 
+range, and any data points beyond this interval are depicted individually 
+as outliers. (D) Spatial expression patterns of SVGs MBP and 
+MTRNR2L8 identified by MCFST.
+Fig. 5 Results of spatial domain recognition and spatially variable gene 
+detection obtained by MCFST and state-of-the-art comparison methods on 
+the mouse anterior brain tissue section dataset. (A) Spatial domains 
+delineated and detected by SEDR, BayesSpace, SpaGCN, SpaNCMG, 
+GraphST, MNMST, and MCFST on the manually annotated mouse 
+anterior brain tissue section dataset. (B) Box line plots of Moran's I values 
+and 1-Geary's C values for spatially variable genes detected by MCFST 
+and SpaGCN in the mouse anterior brain tissue section dataset. In a 
+boxplot, the lower and upper hinges correspond to the first and third 
+quartiles, and the line in the middle marks the median. The whiskers 
+extend outward from the hinges to the most extreme observations lying 
+within 1.5 times the interquartile range, whereas values that go beyond 
+this limit are plotted individually and treated as outliers. (C) Spatial 
+distribution patterns of the spatially variable genes Ttr and Gpr88 as 
+identified by MCFST.
+2.5 MCFST improves recognition of complex anterior 
+mouse brain tissue
+In addition, we examined a dataset consisting of mouse anterior brain 
+tissue sections characterized by complex structural features, which was 
+manually annotated to show that it contained 52 spatial domain divisions 
+(Fig. 5A). By using spatial domain recognition algorithms such as MCFST 
+on this mouse anterior brain tissue, it is possible to demonstrate the ability 
+of the methods to profile tissues with fine structures. Compared with the 
+advanced comparison methods, MCFST showed superior performance in 
+terms of ARI metrics, with an ARI value of 0.46 for the spatial domain 
+recognition results obtained. Except for GraphST, which performed 
+relatively well, the ARI values of the other methods were below 0.4, which 
+is a significant gap with the performance of our method MCFST. To more 
+intuitively display the consistency between the detected regions and the 
+manual annotations of tissue slices, we analyzed the visualization results 
+produced by various spatial domain recognition approaches. These 
+analyses showed that SEDR was unable to precisely capture or delineate 
+Page 5 of 17
+Bioinformatics
+1
+2
+3
+4
+5
+6
+7
+8
+9
+10
+11
+12
+13
+14
+15
+16
+17
+18
+19
+20
+21
+22
+23
+24
+25
+26
+27
+28
+29
+30
+31
+32
+33
+34
+35
+36
+37
+38
+39
+40
+41
+42
+43
+44
+45
+46
+47
+48
+49
+50
+51
+52
+53
+54
+55
+56
+57
+58
+59
+60
+Downloaded from https://academic.oup.com/bioinformatics/advance-article/doi/10.1093/bioinformatics/btag469/8724127 by guest on 08 July 2026
+
+=== PAGE 6 ===
+Z Zhang et al.
+the complex structural organization present in the anterior regions of the 
+mouse brain tissue slices, while BayesSpace and SpaGCN produced 
+recognition results containing a substantial number of anomalies. In 
+contrast, the remaining methods were able to deliver relatively clearer 
+delineation of the regions, aligning more closely with specific hierarchical 
+structures (Fig. 5A). In contrast, the spatial domains detected by MCFST 
+showed a higher degree of consistency with the manual annotations, 
+especially in the tissue slice areas located at the right-middle and the far-
+left regions (Fig. 5A). These findings demonstrate that MCFST achieves 
+superior accuracy in spatial domain detection relative to other methods. In 
+addition, MCFST detected 470 spatially variable genes and SpaGCN 
+detected 414 spatially variable genes, and MCFST showed clear 
+superiority over SpaGCN both in the number of identified SVGs and in 
+the statistical measures of SVGs, including Moran’s I and 1-Geary’s C 
+values (Fig. 5B). 
+Moreover, SVGs such as Ttr and Gpr88 detected by MCFST have distinct 
+spatial expression patterns (Fig. 5C).
+Fig. 6 Performance comparison of MCFST and its variants across three 
+datasets. 
+MCFST 
+is 
+compared 
+with 
+three 
+configurations 
+(MCFST_view1&2&4, MCFST_view1&2&3, MCFST_view3&4) on the 
+human breast cancer, human dorsolateral prefrontal cortex (DLPFC), and 
+mouse anterior brain datasets. The x-axis denotes datasets, and the y-axis 
+shows ARI scores for spatial domain recognition accuracy.
+2.6 Ablation study
+MCFST simultaneously incorporates spatially enhanced gene expression 
+views, raw gene expression information views, and spatial coordinate 
+views, which may introduce redundancy. Therefore, variants of MCFST 
+were designed by removing the spatially enhanced gene expression data 
+view (MCFST_view1&2&4), removing the gene expression information 
+view (MCFST_view1&2&3), and removing the spatial information view 
+(MCFST_view3&4). Furthermore, ablation experiments were conducted 
+using 
+MCFST_view1&2&4, 
+MCFST_view1&2&3, 
+and 
+MCFST_view3&4 on real spatial transcriptomics datasets such as the 
+human breast cancer tissue dataset. Ablation results demonstrate that 
+MCFST consistently outperforms its three variants in spatial domain 
+identification across all datasets (Fig. 6), confirming the effectiveness of 
+the proposed framework.
+In addi

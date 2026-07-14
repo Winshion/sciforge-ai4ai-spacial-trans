@@ -6,3 +6,6 @@ provenance/official_MCFST_remote/.git/
 .sciforge/
 provenance/mplconfig/
 reprod.pdf
+MCFST_repo/
+data/data
+data/v1/

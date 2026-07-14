@@ -1,0 +1,265 @@
+), SLIDE-seqV2 
+(Stickels, et al., 2020), HDST (Vickovic, et al., 2019) and 10X Visium 
+(https://www.10xgenomics.com) and other in situ capture-based 
+technologies. With the gradual maturation of spatial transcriptomics 
+technology, it has been widely employed in numerous medical 
+investigations and has been utilized to explore different categories of 
+cancers (Karras, et al., 2022; Liu, et al., 2023), reveal the complex 
+regulatory networks between different cell types and cellular 
+heterogeneity in neuroscience and pathology (Carlberg, et al., 2019; Ji, et 
+al., 2020; Peng, et al., 2020; Zhang, et al., 2022), and study the 
+development and pathogenesis of vital organs (Chen, et al., 2022; Chen, 
+et al., 2023; Cui, et al., 2025). It can be seen that spatial transcriptomics 
+will provide key support for the discovery and treatment of many diseases 
+such as cancer (Li and Wang, 2021).
+While grouping cells with comparable expression patterns is standard 
+in single-cell transcriptomics, spatial transcriptomics advances this by 
+identifying spatial domains. By integrating spatial coordinates with gene 
+expression, it partitions tissue areas and reveals structural and functional 
+organization (Sun, et al., 2024; Walker, et al., 2022). 
+In recent years, numerous algorithms have been developed. For 
+instance, SEDR extracts gene features with a deep autoencoder, embeds 
+spatial information via variogram autoencoder, and jointly optimizes both 
+for spatial domain recognition (Fu, et al., 2021). BayesSpace adds a spatial 
+prior to cluster adjacent spots, improving precision (Zhao, et al., 2021). 
+SpaGCN integrates expression, spatial coordinates, and histology for 
+domain identification (Hu, et al., 2021). STAGATE jointly incorporates 
+spatial and expression data through an adaptive graph attention–based 
+autoencoder, compressing features into a latent representation of tissue 
+structure (Dong and Zhang, 2022). GraphST employs graph neural 
+networks with self-supervised contrastive learning to enhance domain 
+delineation (Long, et al., 2023). MNMST reformulates domain 
+recognition as multilayer network clustering, learning low-dimensional 
+embeddings for effective identification (Wang, et al., 2024).
+In the past few years, graph-based multi-view clustering has gained 
+attention for partitioning data from multiple perspectives. Given that 
+spatial transcriptomics combines gene expression and spatial context, 
+multi-view models are well-suited. Accordingly, many graph neural 
+network–based multi-view methods have emerged, effectively capturing 
+tissue structures and improving accuracy. For example, Spatial-MGCN 
+uses a multi-view graph convolutional encoder to jointly learn from 
+expression and coordinates, thereby delineating tissue regions (Wang, et 
+al., 2023). SpaNCMG applies a neighborhood-complementary hybrid-
+view graph convolutional network for profiling (Si, et al., 2024). 
+Nonetheless, these methods face challenges in feature integration across 
+views (Wang, et al., 2015; Yin, et al., 2019). Large discrepancies may 
+cause view divergence, distorting similarity matrices and reducing model 
+accuracy (Wang, et al., 2022).
+To this end, we propose MCFST, a unified multi-view graph neural 
+network framework for accurate spatial domain identification in spatial 
+transcriptomics. MCFST constructs complementary views from gene 
+expression, spatial coordinates, and spatially informed expression 
+profiles, and learns a unified latent representation through a multi-view 
+graph convolutional fusion autoencoder. In this framework, the mutual 
+information maximization module is designed to enhance representation 
+consistency across different views and extract shared latent grouping 
+signals, thereby alleviating view divergence. In contrast, the graph fusion 
+component focuses on integrating complementary graph structures from 
+multiple views to construct a consistency graph that better captures spatial 
+and transcriptional relationships among spots. Together, these modules 
+enable MCFST to effectively align heterogeneous information and 
+improve the robustness of spatial domain recognition.
+The main contributions of this study are summarized as follows. First, 
+we develop a unified multi-view graph neural network framework for 
+spatial domain identification, which jointly model’s gene expression, 
+spatial coordinates, and spatially informed expression features. Second, 
+we introduce a mutual information maximization module to reduce 
+inconsistencies among view-specific representations and enhance the 
+learning of shared latent structures. Third, we design a graph fusion 
+component to integrate complementary graph information from different 
+views and construct a consistency graph for more accurate domain 
+delineation. Finally, we evaluate MCFST on three real spatial 
+transcriptomics datasets and two simulated datasets with varying sparsity 
+and noise levels. Experimental results and ablation studies demonstrate 
+that MCFST consistently outperforms state-of-the-art methods in spatial 
+domain identification and spatially variable gene detection, enabling a 
+more refined dissection of complex tissue architectures.
+2
+Results
+2.1 Overview of the MCFST
+MCFST is a multi-view graph neural network framework designed to 
+perform spatial domain recognition and resolve biological organizational 
+structures. It extracts highly variable genes from spatial transcriptomic 
+data and applies preprocessing, principal component analysis (PCA) for 
+dimensionality reduction to obtain feature representations for each spot 
+(Fig. 1A). Moreover, MCFST uses spatial coordinate information to 
+construct two identical spatial neighborhood matrices by KNN nearest 
+neighbor algorithm, constructs a hybrid neighborhood matrix using 
+spatially enhanced gene expression data by self-representation learning, 
+and constructs a gene expression neighborhood matrix using the 
+expression data of highly variable genes sequentially by PCA 
+dimensionality reduction and KNN nearest neighbor algorithm (Fig. 1A). 
+Next, the neighborhood matrices of the four views are fused into a 
+consistency graph using a graph fusion network, and the resulting spot 
+features, the four views and the consistency graph are fed into a multi-
+view graph convolutional fusion autoencoder, where a mutual information 
+maximization strategy is applied to obtain a shared latent representation 
+(Fig. 1B). The obtained latent representation can be applied to tasks such 
+as spatial domain recognition and the identification of spatially variable 
+genes.
+Page 2 of 17
+Bioinformatics
+1
+2
+3
+4
+5
+6
+7
+8
+9
+10
+11
+12
+13
+14
+15
+16
+17
+18
+19
+20
+21
+22
+23
+24
+25
+26
+27
+28
+29
+30
+31
+32
+33
+34
+35
+36
+37
+38
+39
+40
+41
+42
+43
+44
+45
+46
+47
+48
+49
+50
+51
+52
+53
+54
+55
+56
+57
+58
+59
+60
+Downloaded from https://academic.oup.com/bioinformatics/advance-article/doi/10.1093/bioinformatics/btag469/8724127 by guest on 08 July 2026
+
+=== PAGE 3 ===
+Fig. 1 Overview of MCFST. (A) Feature extraction and multi-view construction. MCFST takes the gene expression matrix and spatial coordinates as 
+inputs, derives spot-level features from expression data, and generates spatially enhanced profiles by integrating positional information. It then builds 
+four adjacency matrices: two based on spatial information, one hybrid, and one from gene expression. (B) Latent feature learning and analysis. A multi-
+view graph convolutional autoencoder with mutual information maximization learns common latent representations from the four views and the 
+coherence graph. These latent features are subsequently applied to spatial domain recognition and spatially variable gene detection.
+2.2 MCFST shows high robustness on simulated data
+To assess the robustness of MCFST under different data characteristics, 
+we simulated spatial transcriptomic datasets by varying gene expression 
+sparsity and noise levels. We then applied MCFST, GraphST, MNMST, 
+BayesSpace, and SpaGCN to evaluate spatial domain recognition 
+performance. Results show that MCFST and MNMST maintain stable 
+accuracy across different sparsity levels, while BayesSpace, SpaGCN, and 
+GraphST exhibit greater fluctuations. Notably, MCFST consistently 
+outperforms all baselines in domain recognition under varying sparsity 
+(Fig. 2A). When noise interference is introduced, both MCFST and 
+GraphST demonstrate relatively stronger robustness, with MCFST again 
+achieving the best performance (Fig. 2B). Overall, MCFST exhibits 
+consistently superior robustness across diverse conditions.
+Page 3 of 17
+Bioinformatics
+1
+2
+3
+4
+5
+6
+7
+8
+9
+10
+11
+12
+13
+14
+15
+16
+17
+18
+19
+20
+21
+22
+23
+24
+25
+26
+27
+28
+29
+30
+31
+32
+33
+34
+35
+36
+37
+38
+39
+40
+41
+42
+43
+44
+45
+46
+47
+48
+49
+50
+51
+52
+53
+54
+55
+56
+57
+58
+59
+60
+Downloaded from https://academic.oup.com/bioinformatics/advance-article/doi/10.1093/bioinformatics/btag469/8724127 by guest on 08 July 2026
+
+=== PAGE 4 ===
+Z Zhang et al.
+Fig. 2 Comparison of MCFST with state-of-the-art approaches on 
+simulated datasets. (A) Evaluation on datasets constructed with different 
+sparsity degrees of the gene expression matrix. The horizontal axis shows 
+the sparsity ratio of the matrix, while the vertical axis reports ARI values, 
+reflecting the accuracy of spatial domain identification. (B) Assessment 
+on simulated datasets perturbed by varying noise levels. The x-axis 
+denotes the amount of noise added to the gene expression matrix, whereas 
+the y-axis presents ARI scores, which serve as indicators of the reliability 
+and quality of spatial domain recognition results.
+2.3 MCFST performs precise profiling of human breast 
+cancer tissue
+To evaluate MCFST in spatial domain recognition, we used a curated 
+human breast cancer dataset containing four major tissue types—
+ductal/lobular carcinoma in situ (DCIS/LCIS), normal tissue, invasive 
+ductal carcinoma (IDC), and tumor margin—further subdivided into 20 
+annotated subregions. MCFST was compared with SEDR, BayesSpace, 
+SpaGCN, SpaNCMG, GraphST, and MNMST using the Adjusted 
